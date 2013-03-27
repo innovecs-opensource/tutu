@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html><head>
+  <meta charset='utf-8'>
+  <title>Bus schedule</title>
+</head><body>
+
+<div class='container'></div>
+
+<script>
+(function(root, d) {
+  function fetchSchedule(next) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'dates.json');
+
+    xhr.onload = function (e) {
+      var data = JSON.parse(e.target.responseText);
+      if (typeof next === 'function') next(data);
+    };
+
+    return xhr.send();
+  }
+
+  function renderAll (times, callback) {
+    var fragment = document.createDocumentFragment();
+    times.forEach(function (time) {
+      var content = renderOne(time);
+      fragment.appendChild(content);
+    });
+
+    if (typeof callback === 'function') callback(fragment);
+    return fragment;
+  }
+
+  function renderOne (time) {
+    var li = document.createElement('li');
+    li.innerHTML = time.time;
+
+    return li;
+  }
+
+  var container = document.querySelector('.container');
+
+  fetchSchedule(function (data) {
+    container.appendChild(renderAll(data)); 
+  });
+}(window, document));
+</script>
+
+</body></html>

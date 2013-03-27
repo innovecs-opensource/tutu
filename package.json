@@ -1,0 +1,21 @@
+{
+  "name": "tutu",
+  "version": "0.0.1",
+  "description": "Bus schedule reminder",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "~1.8.2",
+    "grunt": "~0.4.1",
+    "grunt-testacular": "~0.3.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": "",
+  "author": "",
+  "license": "BSD"
+}
